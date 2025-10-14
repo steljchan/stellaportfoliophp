@@ -37,13 +37,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('skills') ? 'active' : '' }}" href="{{ url('/skills') }}">
-                        <i class="fas fa-code me-2"></i>
-                        <span data-lang="en">Skills</span>
-                        <span data-lang="id" style="display: none;">Keahlian</span>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link {{ request()->is('project') ? 'active' : '' }}" href="{{ url('/project') }}">
                         <i class="fas fa-project-diagram me-2"></i>
                         <span data-lang="en">Projects</span>
