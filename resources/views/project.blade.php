@@ -23,120 +23,48 @@
 <section class="projects-grid py-5">
     <div class="container">
         <div class="row g-4">
-            <!-- Project 1 -->
-            <div class="col-lg-6">
-                <div class="project-card card-custom">
-                    <div class="project-image">
-                        <div class="project-badge">Python</div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">BajuKita</h3>
-                        <p class="project-description">
-                            <span data-lang="en">A Tkinter-based clothing management app that allows users to organize, categorize, and visualize their wardrobe items.</span>
-                            <span data-lang="id" style="display: none;">Aplikasi manajemen pakaian berbasis Tkinter yang memungkinkan pengguna mengatur, mengkategorikan, dan memvisualisasikan item pakaian mereka.</span>
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Tkinter</span>
-                        </div>
-                        <div class="project-role">
-                            <strong>
-                                <span data-lang="en">Role:</span>
-                                <span data-lang="id" style="display: none;">Peran:</span>
-                            </strong>
-                            <span data-lang="en">Designer & Developer</span>
-                            <span data-lang="id" style="display: none;">Desainer & Pengembang</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Project 2 -->
+            @foreach ($projects as $project)
             <div class="col-lg-6">
                 <div class="project-card card-custom">
-                    <div class="project-image">
-                        <div class="project-badge">Java</div>
+                    <div class="project-image" style="background-image: url('{{ $project->image }}'); background-size: cover; background-position: center;">
+                        <div class="project-badge">{{ $project->title }}</div>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">DailyTaskManager</h3>
-                        <p class="project-description">
-                            <span data-lang="en">A Java console-based task manager featuring priorities, reminders, and deadline status.</span>
-                            <span data-lang="id" style="display: none;">Manajer tugas berbasis konsol Java yang menampilkan prioritas, pengingat, dan status tenggat waktu.</span>
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Java</span>
-                            <span class="tech-tag">OOP Concepts</span>
-                        </div>
-                        <div class="project-role">
-                            <strong>
-                                <span data-lang="en">Role:</span>
-                                <span data-lang="id" style="display: none;">Peran:</span>
-                            </strong>
-                            <span data-lang="en">Full Stack Developer</span>
-                            <span data-lang="id" style="display: none;">Pengembang Full Stack</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <h3 class="project-title">{{ $project->title }}</h3>
+                        <p class="project-description">{{ $project->description }}</p>
 
-            <!-- Project 3 -->
-            <div class="col-lg-6">
-                <div class="project-card card-custom">
-                    <div class="project-image">
-                        <div class="project-badge">Web</div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Job Search Website</h3>
-                        <p class="project-description">
-                            <span data-lang="en">A Spring Boot + MySQL web app that connects job seekers and companies with profile filtering.</span>
-                            <span data-lang="id" style="display: none;">Aplikasi web Spring Boot + MySQL yang menghubungkan pencari kerja dan perusahaan dengan filter profil.</span>
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Spring Boot</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">Tailwind</span>
-                        </div>
-                        <div class="project-role">
-                            <strong>
-                                <span data-lang="en">Role:</span>
-                                <span data-lang="id" style="display: none;">Peran:</span>
-                            </strong>
-                            <span data-lang="en">Backend Developer</span>
-                            <span data-lang="id" style="display: none;">Pengembang Backend</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        @php
+                            $techs = json_decode($project->tech, true);
+                        @endphp
 
-            <!-- Project 4 -->
-            <div class="col-lg-6">
-                <div class="project-card card-custom">
-                    <div class="project-image">
-                        <div class="project-badge">Mobile</div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">SEMARAK (PKM Project)</h3>
-                        <p class="project-description">
-                            <span data-lang="en">Educational and awareness app to prevent sexual harassment through socialization and reporting features.</span>
-                            <span data-lang="id" style="display: none;">Aplikasi edukasi dan kesadaran untuk mencegah pelecehan seksual melalui fitur sosialisasi dan pelaporan.</span>
-                        </p>
+                        @if(!empty($techs))
                         <div class="project-tech">
-                            <span class="tech-tag">Flutter</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Dart</span>
+                            @foreach ($techs as $tech)
+                                <span class="tech-tag">{{ $tech }}</span>
+                            @endforeach
                         </div>
+                        @endif
+
                         <div class="project-role">
                             <strong>
                                 <span data-lang="en">Role:</span>
                                 <span data-lang="id" style="display: none;">Peran:</span>
                             </strong>
-                            <span data-lang="en">Mobile Developer</span>
-                            <span data-lang="id" style="display: none;">Pengembang Mobile</span>
+                            <span data-lang="en">Developer</span>
+                            <span data-lang="id" style="display: none;">Pengembang</span>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
+
+            @if ($projects->isEmpty())
+            <div class="col-12 text-center">
+                <p class="text-muted fs-5">No projects available yet.</p>
+            </div>
+            @endif
+
         </div>
     </div>
 </section>
@@ -174,7 +102,6 @@
         border-radius: 0 0 30px 30px;
     }
 
-    /* Project Cards */
     .project-card {
         overflow: hidden;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -188,13 +115,13 @@
 
     .project-image {
         height: 200px;
-        background: linear-gradient(135deg, var(--purple-light), var(--pink));
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
         font-size: 4rem;
+        background: linear-gradient(135deg, var(--purple-light), var(--pink));
     }
 
     .project-badge {
@@ -255,34 +182,5 @@
         border-top: 1px solid #444;
         color: #ccc;
     }
-
-    /* CTA Section */
-    .projects-cta {
-        border-radius: 30px 30px 0 0;
-    }
 </style>
-@endsection
-
-@section('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const currentLang = localStorage.getItem('language') || 'en';
-        const elements = document.querySelectorAll('[data-lang]');
-        
-        elements.forEach(element => {
-            if (element.getAttribute('data-lang') === currentLang) {
-                element.style.display = 'inline';
-            } else {
-                element.style.display = 'none';
-            }
-        });
-
-        // Add project card animations
-        const projectCards = document.querySelectorAll('.project-card');
-        projectCards.forEach((card, index) => {
-            card.style.animationDelay = `${index * 0.2}s`;
-            card.classList.add('fade-in');
-        });
-    });
-</script>
 @endsection
