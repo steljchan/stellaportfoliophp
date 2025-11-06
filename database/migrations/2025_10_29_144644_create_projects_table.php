@@ -14,18 +14,16 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('image')->nullable();
             $table->text('description')->nullable();
-            $table->string('link')->nullable();
+            $table->string('image')->nullable();
+            $table->json('tech')->nullable(); // 🟢 Tambahkan baris ini
+            $table->unsignedBigInteger('experience_id')->nullable(); // relasi ke experiences
             $table->timestamps();
+
+            $table->foreign('experience_id')->references('id')->on('experiences')->onDelete('cascade');
         });
     }
 
-
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('projects');

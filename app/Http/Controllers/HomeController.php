@@ -8,6 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home');
+        $experiences = Experience::with('projects.blogs')->get();
+        return view('about.blade.php', compact('experiences'));
     }
 }

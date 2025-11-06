@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->date('published_at')->nullable();
             $table->timestamps();
+            $table->unsignedBigInteger('project_id')->nullable()->after('id');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
+
     }
 
 

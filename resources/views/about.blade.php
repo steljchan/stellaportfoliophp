@@ -91,6 +91,75 @@
                 </div>
             @endforeach
         </div>
+
+        <!-- 🌟 Experience Details Section -->
+        <div class="experience-details mt-5">
+            <h3 class="text-center mb-4 fw-bold">
+                <span data-lang="en">Experience Details</span>
+                <span data-lang="id" style="display: none;">Detail Pengalaman</span>
+            </h3>
+
+            @foreach ($experiences as $experience)
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Left Column: Experience Info -->
+                            <div class="col-md-4 border-end">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center me-3"
+                                        style="width:45px; height:45px; background: var(--purple-light, #f3e8ff); color: var(--purple-main, #6f42c1);">
+                                        <i class="fas {{ $experience->icon ?? 'fa-briefcase' }}"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-0 fw-bold">{{ $experience->title }}</h5>
+                                        <small class="text-muted">{{ $experience->company }}</small>
+                                    </div>
+                                </div>
+
+                                <p class="text-muted mb-2">{{ $experience->description }}</p>
+                                <span class="badge bg-light text-dark border">
+                                    <i class="far fa-calendar-alt me-1"></i>
+                                    {{ $experience->start_date }} – {{ $experience->end_date }}
+                                </span>
+                            </div>
+
+                            <!-- Right Column: Projects + Blogs -->
+                            <div class="col-md-8 mt-3 mt-md-0">
+                                @if ($experience->projects->count())
+                                    <h6 class="fw-semibold mb-2">
+                                        <i class="fas fa-folder-open me-2 text-primary"></i>Projects
+                                    </h6>
+                                    <div class="ms-2">
+                                        @foreach ($experience->projects as $project)
+                                            <div class="border rounded-3 p-3 mb-3 bg-light">
+                                                <strong>{{ $project->title }}</strong>
+                                                <p class="mb-2 small text-muted">{{ $project->description }}</p>
+
+                                                @if ($project->blogs->count())
+                                                    <h6 class="text-secondary small mb-1">
+                                                        <i class="fas fa-pen-nib me-1"></i>Blogs:
+                                                    </h6>
+                                                    <ul class="small text-muted ps-3 mb-0">
+                                                        @foreach ($project->blogs as $blog)
+                                                            <li>
+                                                                {{ $blog->title }}
+                                                                <span class="badge bg-secondary ms-1">{{ $blog->category }}</span>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <p class="text-muted fst-italic">No projects available for this experience.</p>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
 </section>
 
