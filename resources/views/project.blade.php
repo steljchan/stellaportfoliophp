@@ -46,6 +46,15 @@
                         </div>
                         @endif
 
+                        @if ($project->skills->isNotEmpty())
+                        <div class="project-skills mt-2">
+                            @foreach ($project->skills as $skill)
+                                <span class="tech-tag">{{ $skill->name }}</span>
+                            @endforeach
+                        </div>
+                        @endif
+
+
                         <div class="project-role">
                             <strong>
                                 <span data-lang="en">Role:</span>

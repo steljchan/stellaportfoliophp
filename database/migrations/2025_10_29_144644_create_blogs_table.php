@@ -6,29 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('content');
+            $table->string('excerpt')->nullable();
             $table->string('image')->nullable();
-            $table->date('published_at')->nullable();
+            $table->string('category')->nullable();
+            $table->date('date')->nullable();
+            $table->string('read_time')->nullable();
+            $table->unsignedBigInteger('project_id')->nullable();
             $table->timestamps();
-            $table->unsignedBigInteger('project_id')->nullable()->after('id');
+
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
-
     }
 
-
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('blogs');

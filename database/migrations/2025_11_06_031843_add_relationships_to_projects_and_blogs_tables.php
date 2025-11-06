@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Tambahkan kolom relasi ke tabel projects dan blogs.
-     */
+
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
@@ -27,9 +25,6 @@ return new class extends Migration
     }
 
 
-    /**
-     * Rollback perubahan (hapus kolom relasi).
-     */
     public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {

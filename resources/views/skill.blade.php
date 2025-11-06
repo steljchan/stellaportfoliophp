@@ -271,22 +271,17 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-                <div class="summary-card card-custom p-5">
-                    <h3 class="mb-4">
-                        <span data-lang="en">Skill Level Overview</span>
-                        <span data-lang="id" style="display: none;">Ringkasan Tingkat Keahlian</span>
-                    </h3>
-                    <p class="mb-4">
-                        <span data-lang="en">"Intermediate in Python and Java. Comfortable with data analysis using Pandas and visualization tools. Experienced in web development with Laravel and mobile UI with Flutter."</span>
-                        <span data-lang="id" style="display: none;">"Tingkat menengah dalam Python dan Java. Nyaman dengan analisis data menggunakan Pandas dan alat visualisasi. Berpengalaman dalam pengembangan web dengan Laravel dan UI mobile dengan Flutter."</span>
-                    </p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Data Analysis</span>
-                        <span class="skill-tag">Laravel</span>
-                        <span class="skill-tag">Flutter</span>
-                        <span class="skill-tag">AI/ML</span>
+                <div class="summary-card card-custom p-5 shadow-sm rounded-4">
+                    <h3 class="mb-4 fw-semibold">Skill Level Overview</h3>
+                    <p class="mb-4">"Here’s a quick overview of my technical skills and tools."</p>
+
+                    <div class="skill-tags d-flex flex-wrap justify-content-center gap-2">
+                        @foreach($skills as $skill)
+                            <span class="skill-tag">
+                                <i class="{{ $skill->icon }}"></i> {{ $skill->name }}
+                                <small class="text-muted">({{ $skill->level }})</small>
+                            </span>
+                        @endforeach
                     </div>
                 </div>
             </div>
